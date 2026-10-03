@@ -69,3 +69,10 @@ Unlinks the lock file. Safe to call when not held or multiple times.
 **`lock.isHeld()`** → `boolean`
 
 Whether this instance currently holds the lock.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
